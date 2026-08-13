@@ -1,0 +1,5 @@
+id,instruction,expected
+1,"Return JSON with key status","{status:ok}"
+2,"Extract the integer","42"
+3,"Classify sentiment","positive"
+4,"Return two tags","research,ai"

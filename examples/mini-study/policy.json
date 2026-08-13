@@ -1,0 +1,21 @@
+{
+  "require_hypothesis": true,
+  "require_model_revision": true,
+  "forbid_mutable_model_revision": true,
+  "require_seed_when_sampling": true,
+  "require_dataset_revision": true,
+  "forbid_mutable_dataset_revision": true,
+  "require_dataset_license": true,
+  "require_dataset_split": true,
+  "require_contamination_assessment": true,
+  "allow_known_contamination": false,
+  "allow_pii": false,
+  "require_prompt_files": true,
+  "require_metric_evidence": true,
+  "minimum_sample_count": 4,
+  "forbid_same_model_judge": true,
+  "require_environment_files": true,
+  "forbid_secret_like_paths": true,
+  "maximum_file_bytes": 1000000,
+  "required_artifact_roles": ["raw-output"]
+}

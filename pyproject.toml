@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm-eval-capsule"
+version = "0.1.0"
+description = "Hash-bound reproducibility capsules and policy checks for LLM evaluations"
+readme = "README_EN.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "MikeJack302"}]
+keywords = ["llm", "evaluation", "reproducibility", "research", "provenance"]
+dependencies = []
+
+[project.scripts]
+llm-eval-capsule = "llm_eval_capsule.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm_eval_capsule"]

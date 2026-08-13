@@ -1,0 +1,74 @@
+{
+  "schema": "llm-eval-capsule.study/v1",
+  "study_id": "thesis-eval-2026-08",
+  "title": "Instruction-following pilot for thesis assistant",
+  "task": "structured instruction following",
+  "hypothesis": "The candidate model exceeds 0.70 exact match on the frozen test split.",
+  "models": [
+    {
+      "id": "candidate",
+      "role": "system-under-test",
+      "provider": "example-cloud",
+      "name": "research-llm-small",
+      "revision": "model-2026-08-01",
+      "parameters": {
+        "temperature": 0.2,
+        "top_p": 0.95,
+        "seed": 20260813,
+        "max_tokens": 256
+      }
+    },
+    {
+      "id": "judge",
+      "role": "evaluator",
+      "provider": "example-cloud",
+      "name": "research-judge-medium",
+      "revision": "model-2026-07-15",
+      "parameters": {"temperature": 0, "max_tokens": 128}
+    }
+  ],
+  "datasets": [
+    {
+      "name": "thesis-instruction-set",
+      "path": "data/eval.csv",
+      "revision": "sha256:demo-frozen-revision",
+      "split": "test-v1",
+      "license": "CC-BY-4.0",
+      "contamination_assessment": "checked_no_overlap",
+      "contains_pii": false
+    }
+  ],
+  "prompts": [
+    {
+      "name": "system-prompt",
+      "path": "prompts/system.txt",
+      "revision": "v3"
+    }
+  ],
+  "evaluators": [
+    {
+      "name": "schema-judge",
+      "kind": "model",
+      "model_ref": "judge",
+      "rubric_path": "rubrics/schema.md"
+    }
+  ],
+  "metrics": [
+    {
+      "name": "exact_match",
+      "value": 0.75,
+      "sample_count": 4,
+      "evidence_path": "results/predictions.jsonl",
+      "direction": "higher-is-better"
+    }
+  ],
+  "environment_files": ["requirements-lock.txt"],
+  "artifacts": [
+    {"role": "raw-output", "path": "results/predictions.jsonl"}
+  ],
+  "declarations": {
+    "test_set_access": "after_protocol_freeze",
+    "training_data_overlap": "checked_no_overlap",
+    "prompt_selection": "pre_registered"
+  }
+}
